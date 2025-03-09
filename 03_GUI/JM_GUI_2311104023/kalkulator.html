@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #e3f2fd;
+        }
+
+        .calculator {
+            width: 280px;
+            background: #ffffff;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .screen {
+            width: 95%;
+            height: 50px;
+            font-size: 26px;
+            text-align: right;
+            padding: 10px;
+            border: none;
+            background: #cfd8dc;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        button {
+            width: 100%;
+            height: 50px;
+            font-size: 22px;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .number {
+            background: #81d4fa;
+            color: white;
+        }
+        .number:hover {
+            background: #4fc3f7;
+        }
+
+        .operator {
+            background: #1976d2;
+            color: white;
+        }
+        .operator:hover {
+            background: #1565c0;
+        }
+
+        .clear {
+            background: #d32f2f;
+            color: white;
+        }
+        .clear:hover {
+            background: #b71c1c;
+        }
+
+        .equal {
+            background: #388e3c;
+            color: white;
+            grid-column: span 3;
+        }
+        .equal:hover {
+            background: #2e7d32;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator">
+        <h2>Kalkulator</h2>
+        <input type="text" class="screen" id="screen" disabled>
+        
+        <div class="buttons">
+            <button class="number" onclick="appendNumber('1')">1</button>
+            <button class="number" onclick="appendNumber('2')">2</button>
+            <button class="number" onclick="appendNumber('3')">3</button>
+
+            <button class="number" onclick="appendNumber('4')">4</button>
+            <button class="number" onclick="appendNumber('5')">5</button>
+            <button class="number" onclick="appendNumber('6')">6</button>
+
+            <button class="number" onclick="appendNumber('7')">7</button>
+            <button class="number" onclick="appendNumber('8')">8</button>
+            <button class="number" onclick="appendNumber('9')">9</button>
+
+            <button class="operator" onclick="appendOperator('+')">+</button>
+            <button class="number" onclick="appendNumber('0')">0</button>
+            <button class="clear" onclick="clearScreen()">C</button>
+
+            <button class="equal" onclick="calculateResult()">=</button>
+        </div>
+    </div>
+    
+    <script>
+        let screen = document.getElementById("screen");
+        let currentInput = "";
+
+        function appendNumber(number) {
+            currentInput += number;
+            screen.value = currentInput;
+        }
+
+        function appendOperator(operator) {
+            if (currentInput !== "" && !isNaN(currentInput[currentInput.length - 1])) {
+                currentInput += operator;
+                screen.value = currentInput;
+            }
+        }
+
+        function clearScreen() {
+            currentInput = "";
+            screen.value = "";
+        }
+
+        function calculateResult() {
+            try {
+                currentInput = eval(currentInput).toString();
+                screen.value = currentInput;
+            } catch (error) {
+                screen.value = "Error";
+                currentInput = "";
+            }
+        }
+    </script>
+
+</body>
+</html>

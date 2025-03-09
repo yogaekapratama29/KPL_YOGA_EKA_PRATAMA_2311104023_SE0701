@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUI Praktikum</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+        input, button { margin: 10px; padding: 10px; }
+        #output { margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h2>Form Input</h2>
+    <input type="text" id="nameInput" placeholder="Masukkan Nama">
+    <button onclick="showMessage()">Kirim</button>
+    <p id="output"></p>
+
+    <script>
+        function showMessage() {
+            const name = document.getElementById('nameInput').value;
+            document.getElementById('output').innerText = "Halo " + name;
+        }
+    </script>
+</body>
+</html>
