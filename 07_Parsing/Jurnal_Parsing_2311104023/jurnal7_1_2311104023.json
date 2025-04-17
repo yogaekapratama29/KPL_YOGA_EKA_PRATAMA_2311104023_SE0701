@@ -1,0 +1,15 @@
+{
+   "firstName": "Yoga",
+   "lastName": "Pratama",
+   "gender": "male",
+   "age": 20,
+   "address": {
+       "streetAddress": "Arcawinangun",
+       "city": "Purwokerto",
+       "state": "Purwokerto Timur"
+   },
+   "courses": [
+       { "code": "CRI2B12", "name": "Konstruksi Perangkat Lunak" },
+       { "code": "CRI2C23", "name": "Kpopers" }
+   ]
+}

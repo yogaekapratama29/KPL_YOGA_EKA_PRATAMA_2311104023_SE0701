@@ -1,0 +1,32 @@
+{
+	"courses": [
+		{
+			"code": "CRI2C4",
+			"name": "Konstruksi Perangkat Lunak"
+		},
+		{
+			"code": "MBKM123",
+			"name": "Pemrograman Berbasis Web"
+		},
+		{
+			"code": "MCL1234",
+			"name": "Kecerdasan Buatan"
+		},
+		{
+			"code": "UCL2314",
+			"name": "Dasar-Dasar Pemrograman"
+		},
+		{
+			"code": "UEL2314",
+			"name": "Pemrograman Berbasis Mobile"
+		},
+		{
+			"code": "LLG2412",
+			"name": "Algoritma dan Pemrograman"
+		},
+		{
+			"code": "TPM2314",
+			"name": "Pemrograman Berbasis Jaringan"
+		}
+	]
+}
