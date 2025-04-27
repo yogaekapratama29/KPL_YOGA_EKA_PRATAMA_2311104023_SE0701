@@ -1,0 +1,163 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Mahasiswa API",
+      "description": "API untuk Manajemen Data Mahasiswa",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:8080",
+        "description": "Mahasiswa Restful API Server"
+      }
+    ],
+    "paths": {
+      "/api/Mahasiswa": {
+        "get": {
+          "summary": "Get all Mahasiswa",
+          "description": "Mengambil semua data Mahasiswa",
+          "responses": {
+            "200": {
+              "description": "Sukses mengambil semua Mahasiswa",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Mahasiswa"
+                    },
+                    "example": [
+                      {
+                        "name": "Andi",
+                        "nim": "12345678",
+                        "courses": ["Matematika", "Fisika"],
+                        "year": 2021
+                      },
+                      {
+                        "name": "Budi",
+                        "nim": "87654321",
+                        "courses": ["Kimia", "Biologi"],
+                        "year": 2020
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "summary": "Add a new Mahasiswa",
+          "description": "Menambahkan Mahasiswa baru ke dalam list",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Mahasiswa"
+                },
+                "example": {
+                  "name": "Citra",
+                  "nim": "11223344",
+                  "courses": ["Bahasa Inggris", "Seni Rupa"],
+                  "year": 2022
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Mahasiswa berhasil ditambahkan"
+            }
+          }
+        }
+      },
+      "/api/Mahasiswa/{id}": {
+        "get": {
+          "summary": "Get Mahasiswa by ID",
+          "description": "Mengambil Mahasiswa berdasarkan ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              },
+              "description": "Index dari Mahasiswa yang ingin diambil"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Sukses mengambil Mahasiswa",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Mahasiswa"
+                  },
+                  "example": {
+                    "name": "Andi",
+                    "nim": "12345678",
+                    "courses": ["Matematika", "Fisika"],
+                    "year": 2021
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Mahasiswa tidak ditemukan"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Delete Mahasiswa by ID",
+          "description": "Menghapus Mahasiswa berdasarkan ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              },
+              "description": "Index dari Mahasiswa yang ingin dihapus"
+            }
+          ],
+          "responses": {
+            "204": {
+              "description": "Mahasiswa berhasil dihapus"
+            },
+            "404": {
+              "description": "Mahasiswa tidak ditemukan"
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "Mahasiswa": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "nim": {
+              "type": "string"
+            },
+            "courses": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "year": {
+              "type": "integer"
+            }
+          },
+          "required": ["name", "nim", "courses", "year"]
+        }
+      }
+    }
+  }
+  
