@@ -1,0 +1,129 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Mahasiswa API",
+    "description": "API untuk Manajemen Data Mahasiswa kelompok",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000",
+      "description": "Server Lokal Mahasiswa API"
+    }
+  ],
+  "paths": {
+    "/api/mahasiswa": {
+      "get": {
+        "summary": "Ambil semua mahasiswa",
+        "description": "Mengembalikan daftar mahasiswa yang tersimpan",
+        "responses": {
+          "200": {
+            "description": "Daftar mahasiswa berhasil diambil",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Mahasiswa"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Tambahkan mahasiswa baru",
+        "description": "Menambahkan objek mahasiswa baru ke daftar",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Mahasiswa"
+              },
+              "example": {
+                "name": "John Doe",
+                "nim": "1302199999"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Mahasiswa berhasil ditambahkan"
+          }
+        }
+      }
+    },
+    "/api/mahasiswa/{index}": {
+      "get": {
+        "summary": "Ambil mahasiswa berdasarkan index",
+        "description": "Mengambil data mahasiswa berdasarkan index dalam list",
+        "parameters": [
+          {
+            "name": "index",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Data mahasiswa ditemukan",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Mahasiswa"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Mahasiswa tidak ditemukan"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Hapus mahasiswa berdasarkan index",
+        "description": "Menghapus objek mahasiswa dari list berdasarkan index",
+        "parameters": [
+          {
+            "name": "index",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Mahasiswa berhasil dihapus"
+          },
+          "404": {
+            "description": "Mahasiswa tidak ditemukan"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Mahasiswa": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "nim": {
+            "type": "string"
+          }
+        },
+        "required": ["name", "nim"]
+      }
+    }
+  }
+}
